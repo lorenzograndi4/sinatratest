@@ -5,20 +5,12 @@ get '/' do
   slim :index
 end
 
-__END__
+get '/:task' do
+  @task = params[:task].split('-').join(' ').capitalize
+  slim :task
+end
 
-@@layout
-doctype html
-html
-  head
-    meta charset="utf-8"
-    title Hello
-    link rel="stylesheet" media="screen, projection" href="/styles.css"
-  body
-    h1 Hello there
-    == yield
-
-@@index
-h2 My Tasks
-ul.tasks
-  li Get Milk
+post '/' do
+  @task = params[:task]
+  slim :task
+end
